@@ -1,0 +1,182 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+ <title>Registration Form</title> 
+ <link rel="stylesheet" href="web4a.css" > 
+ <script src="web4b.js" ></script> 
+ 
+</head> 
+<body> 
+ <div class="form-container"> 
+ 
+ <h1>Registration Form</h1> 
+ <form action="formdata.php" method="POST" onsubmit="return validate()"> 
+ <label for="name">Name :</label><br><br> 
+ <input type="text" id="name" name="name" placeholder="Enter your 
+Name" required><br><br> 
+ 
+ 
+ <label for="email">Email ID :</label><br><br> 
+ <input type="email" id="email" name="email" required 
+placeholder="Enter your Email ID" ><br><br> 
+ 
+ <label for="dob">Date of Birth :</label><br><br> 
+ <input type="date" id="dob" name="dob" required placeholder="Enter 
+your Date of Birth"><br><br> 
+ 
+ <label>Gender :</label><br><br> 
+ <label><input type="radio" name="gender" value="Male" 
+required> Male</label> 
+ <label><input type="radio" name="gender" value="Female" 
+required> Female</label> 
+ <label><input type="radio" name="gender" value="Other" 
+required> Other</label><br><br> 
+ 
+ <label for="phone">Phone Number :</label><br><br> 
+ <input type="tel" id="phone" name="phone" required 
+placeholder="Enter your Phone Number" ><br><br> 
+ 
+ <label for="address">Address :</label><br><br> 
+ <label for="state">State :</label><br><br> 
+ <input type="text" id="state" name="state" required 
+placeholder="Enter the State you live in"><br><br> 
+ 
+ <label for="city">City :</label><br><br> 
+ <input type="text" id="city" name="city" required 
+placeholder="Enter the city you live in"><br><br> 
+ 
+ <label for="dist">District :</label><br><br> 
+ <input type="text" id="dist" name="dist" required 
+placeholder="Enter the district you live in"><br><br> 
+ <label for="password">Set a Password :</label><br><br> 
+ <input type="password" id="password" name="password" required 
+placeholder="Enter a password you can remember" ><br><br> 
+ 
+ <label for="cpassword">Confirm your Password :</label><br><br> 
+ <input type="password" id="cpassword" name="cpassword" required 
+placeholder="Confirm the password you entered" ><br><br> 
+ 
+ 
+ <button type="submit" name="submit" class="submit-btn" 
+>Register</button> 
+ 
+ <button type="reset" class="reset-btn">Clear</button> 
+ 
+ </form> 
+</div> 
+</body> 
+</html> 
+
+CSS FILE:
+body{ 
+ background-color: lightblue; 
+} 
+ .form-container { 
+ background-color: lightgray; 
+ width: 700px;
+margin: 50px auto; 
+ padding: 30px; 
+ border: 2px solid darkblue; 
+ border-radius: 10px; 
+ box-shadow: 0 0 10px brown (0, 0, 0, 0.1); 
+} 
+input[type="text"], 
+input[type="email"], 
+input[type="password"], 
+input[type="tel"], 
+input[type="date"] { 
+ width: 100%; 
+ padding: 8px; 
+ margin: 07spx 0; 
+ border: 3px solid darkblue; 
+ border-radius: 5px; 
+ box-sizing: border-box; 
+} 
+input[type="submit"] { 
+ background-color: beige; 
+ color: black; 
+ padding: 8px; 
+ border: none; 
+ border-radius: 5px; 
+ cursor: pointer; 
+ width: 100%; 
+ 
+} 
+.submit-btn{ 
+ background-color: lightblue; 
+ border-color: darkblue; 
+ border-radius: 5px; 
+ padding: 5px; 
+ text-align: center; 
+ font-size: 15px; 
+} 
+.reset-btn{ 
+ background-color: lightblue; 
+ border-color: darkblue; 
+ border-radius: 5px; 
+ padding: 5px; 
+ text-align: right; 
+ font-size: 15px; 
+ 
+} 
+label{ 
+font-family: 'Times New Roman'; 
+} 
+h1{ 
+ font-family: 'Times New Roman'; 
+ text-align: center; 
+}
+
+JAVA SCRIPT FILE:
+
+function validatephone(){ 
+ var phone = document.getElementById("phone").value; 
+ var phoneRegex = /^[0-9]{10}$/; 
+ if (!phoneRegex.test(phone)) { 
+ alert("Invalid Phone No."); 
+ document.getElementById("phone").focus(); 
+ return false; 
+ } 
+ return true; 
+} 
+function validatemail(){ 
+ let regex = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/; 
+ var email = document.getElementById("email").value; 
+ if (regex.test(email) == false) { 
+ alert("Invalid Email Id"); 
+ document.getElementById("email").focus(); 
+ return false; 
+ } 
+ return true; 
+} 
+function validatepass(){ 
+ let val = /^(?=.\d)(?=.[a-z])(?=.[0-9])(?=.[A-Z])(?=.[!@#$%^&()\-
++.]).{8,20}$/; 
+ var password = document.getElementById("password").value; 
+ if (val.test(password) == false ) { 
+ alert("Invalid Password, should be atleast 8 - 20 characters long 
+containing one lowercase , one uppercase , one digit and one special symbol"); 
+ document.getElementById("password").focus(); 
+ return false; 
+ } 
+ return true; 
+} 
+function validatecpass(){ 
+ var cpassword = document.getElementById("cpassword").value; 
+ var password = document.getElementById("password").value; 
+ if (cpassword != password) { 
+ alert( "Password and Confirm password should match"); 
+ document.getElementById("cpassword").focus(); 
+ return false; 
+ } 
+ return true; 
+} 
+function validate(){ 
+ if ((validatephone() && validatemail() && validatepass () && 
+validatecpass())){ 
+ return true; 
+ } 
+ else{ 
+ return false; 
+ } 
+}
